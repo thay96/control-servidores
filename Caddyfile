@@ -1,0 +1,19 @@
+https://192.168.11.84 {
+    tls ./192.168.11.84+2.pem ./192.168.11.84+2-key.pem
+
+    handle /api/registros* {
+        reverse_proxy 127.0.0.1:3002
+    }
+
+    handle_path /formularios* {
+        reverse_proxy 127.0.0.1:3002
+    }
+
+    handle /streamlit* {
+        reverse_proxy 127.0.0.1:8501
+    }
+
+    handle {
+        reverse_proxy 127.0.0.1:3000
+    }
+}
